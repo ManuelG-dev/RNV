@@ -1,22 +1,29 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import logo from './logo.svg'
 import './App.css'
 
 function App() {
   const [count, setCount] = useState(0)
+  useEffect(() => {
+  if (count > 10) {
+    alert("El máximo es 10")
+    setCount(10)
+  }
 
+  if (count < 0) {
+    setCount(0)
+  }
+}, [count])
   return (
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>Hello Vite + React!</p>
         <p>
-          <button type="button" onClick={() => setCount((count) => count + 1)}>
-            count is: {count}
-          </button>
-          <button type="button" onClick={() => setCount((count) => count - 1)}>
-             {count}
-          </button>
+         <button type="button" onClick={() => setCount((count) => count + 1)}> count is: {count} </button>
+      <button onClick={() => setCount(count - 1)} style={{ marginLeft: "10px" }}>
+        Decrementar
+      </button>
         </p>
         <p>
           Edit <code>App.jsx</code> and save to test HMR updates.
